@@ -9,7 +9,7 @@
       "Claims": [
         {
           "Name": "admin",
-          "Companies": [ "ba", "gui" ],
+          "Categories": [ "cat" ],
           "Permissions": [ "read", "write" ]
         }
       ]

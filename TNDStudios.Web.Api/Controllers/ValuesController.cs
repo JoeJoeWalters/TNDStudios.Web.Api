@@ -20,7 +20,7 @@ namespace TNDStudios.Web.Api.Controllers
         }
 
         // GET api/values
-        [Validate(Type: "admin", Company: "ba", Permission: "read")]
+        [Validate(Type: "admin", Category: "cat", Permission: "read")]
         [HttpGet]
         public ActionResult<IEnumerable<Person>> Get()
         {
@@ -30,14 +30,14 @@ namespace TNDStudios.Web.Api.Controllers
             {
                 new Person()
                 {
-                    Forename = "Joe",
-                    Surname = "Walters",
+                    Forename = "Person",
+                    Surname = "Name",
                     InternalId = "InternalId",
                     ExternalId = "ExternalId",
-                    Middlenames = "Matthew",
+                    Middlenames = "Middlenames",
                     NINumber = "NINumber",
                     PKId  = Guid.NewGuid(),
-                    DOB = new DateTime(1976, 5, 23),
+                    DOB = new DateTime(2001, 5, 21),
                     Title = "Mr"
                 }
             };
