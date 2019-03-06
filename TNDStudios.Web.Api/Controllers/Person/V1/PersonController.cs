@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TNDStudios.Domain.Objects;
+using objects = TNDStudios.Domain.Objects;
 using TNDStudios.Web.ApiManager.Security.Authentication;
 using TNDStudios.Web.ApiManager.Controllers;
 using Microsoft.Extensions.Logging;
 
-namespace TNDStudios.Web.Api.Controllers
+namespace TNDStudios.Web.Api.Controllers.Person.V1
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [ApiVersion("1.1")]
+    [Route("api/person")]
     [ApiController]
-    public class ValuesController : ManagedController
+    public class PersonController : ManagedController
     {
-        public ValuesController(ILogger<ManagedController> logger) : base(logger)
+        public PersonController(ILogger<ManagedController> logger) : base(logger)
         {
 
         }
 
-        // GET api/values
+        // Version 1.0
+        [HttpGet, MapToApiVersion("1.0")]
         [Validate(Type: "admin", Category: "cat", Permission: "read")]
         [HttpGet]
-        public ActionResult<IEnumerable<Person>> Get()
-        {
-            CurrentUser?.Claims?.ForEach(claim => { });
-
-            return new Person[]
+        public ActionResult<IEnumerable<objects.Person>> Get_V1_0() =>
+            new objects.Person[]
             {
-                new Person()
+                new objects.Person()
                 {
                     Forename = "Person",
                     Surname = "Name",
@@ -41,6 +41,12 @@ namespace TNDStudios.Web.Api.Controllers
                     Title = "Mr"
                 }
             };
-        }
+
+        [HttpGet, MapToApiVersion("1.1")]
+        [Validate(Type: "admin", Category: "cat", Permission: "read")]
+        [HttpGet]
+        public ActionResult<IEnumerable<objects.Person>> Get_V1_1() => 
+            Get_V1_0();
+
     }
 }

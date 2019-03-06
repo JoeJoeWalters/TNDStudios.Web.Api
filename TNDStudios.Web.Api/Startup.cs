@@ -6,8 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TNDStudios.Web.ApiManager.Security.Authentication;
 using TNDStudios.Web.ApiManager.Security;
-using TNDStudios.Web.ApiManager.Security.Objects;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using System.IO;
 
 namespace TNDStudios.Web.Api
@@ -34,6 +33,15 @@ namespace TNDStudios.Web.Api
                 .AddCors()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Set up the Api versioning
+            services
+                .AddApiVersioning(o =>
+                {
+                    o.ApiVersionReader = new HeaderApiVersionReader("api-version");
+                    o.AssumeDefaultVersionWhenUnspecified = true;
+                    o.ReportApiVersions = true;
+                });
 
             // Custom service setup for the API Manager
             services
