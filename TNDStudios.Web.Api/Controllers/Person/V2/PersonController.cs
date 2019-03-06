@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using objects = TNDStudios.Domain.Objects;
-using TNDStudios.Web.ApiManager.Security.Authentication;
-using TNDStudios.Web.ApiManager.Controllers;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using TNDStudios.Web.ApiManager.Controllers;
+using TNDStudios.Web.ApiManager.Security.Authentication;
+using objects = TNDStudios.Domain.Objects;
 
 namespace TNDStudios.Web.Api.Controllers.Person.V2
 {

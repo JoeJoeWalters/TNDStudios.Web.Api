@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using TNDStudios.Web.ApiManager;
@@ -68,26 +67,6 @@ namespace TNDStudios.Web.Api
 
             // Enable custom versioning
             app.UseCustomVersioning(provider);
-        }
-
-        static Info CreateInfoForApiVersion(ApiVersionDescription description)
-        {
-            var info = new Info()
-            {
-                Title = $"Salesforce Outbound API {description.ApiVersion}",
-                Version = description.ApiVersion.ToString(),
-                Description = "Salesforce integration with Swagger, Swashbuckle, Input Formatting and API versioning.",
-                Contact = new Contact() { Name = "Joe Walters", Email = "info@thenakeddeveloper.com" },
-                TermsOfService = "Owned By TNDStudios",
-                License = new License() { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
-            };
-
-            if (description.IsDeprecated)
-            {
-                info.Description += " <b color=\"red\">This API version has been deprecated</b>.";
-            }
-
-            return info;
         }
     }
 }
