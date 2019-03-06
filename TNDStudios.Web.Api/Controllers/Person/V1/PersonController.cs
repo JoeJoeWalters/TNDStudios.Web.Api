@@ -11,7 +11,7 @@ using System.Linq;
 namespace TNDStudios.Web.Api.Controllers.Person.V1
 {
     [Authorize]
-    [ApiVersion("1.0")]
+    [ApiVersion("1.0", Deprecated = true)]
     [ApiVersion("1.1")]
     [Route("api/person")]
     [ApiController]
