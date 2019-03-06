@@ -28,7 +28,7 @@ namespace TNDStudios.Web.Api.Controllers.Person.V2
             {
                 new objects.Person()
                 {
-                    Forename = "Person",
+                    Forename = "V2.0",
                     Surname = "Name",
                     InternalId = "InternalId",
                     ExternalId = "ExternalId",
