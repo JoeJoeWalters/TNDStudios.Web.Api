@@ -28,7 +28,7 @@ namespace TNDStudios.Web.Api.Controllers.Person.V1
         public ActionResult<IEnumerable<objects.Person>> Get_V1_0() =>
             GetPeople();
 
-        // Version 1.2
+        // Version 1.1
         [HttpGet, MapToApiVersion("1.1")]
         [Validate(Type: "admin", Category: "cat", Permission: "read")]
         public ActionResult<IEnumerable<objects.Person>> Get_V1_1() =>
