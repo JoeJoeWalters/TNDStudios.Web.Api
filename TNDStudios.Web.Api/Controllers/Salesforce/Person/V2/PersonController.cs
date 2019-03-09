@@ -1,26 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using TNDStudios.Web.ApiManager.Controllers;
+using TNDStudios.Web.ApiManager.Data.Salesforce;
 using objects = TNDStudios.Domain.Objects;
 
 namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V2
 {
-    [ApiVersion("2.0")]
-    [Route("api/salesforce/person")]
-    [ApiController]
-    public class PersonController : ManagedController
+    [JsonObject]
+    public class SalesforcePerson : SalesforceObjectBase
     {
-        public PersonController(ILogger<ManagedController> logger) : base(logger)
-        {
+        [JsonProperty("sf:Name")]
+        public String Name { get; set; }
 
+        [JsonProperty("sf:Email")]
+        public String Email { get; set; }
+    }
+    
+    [Route("api/salesforce/person/v2")]
+    [ApiController]
+    public class PersonController : SalesforceNotificationController<SalesforcePerson>
+    {
+        public override List<string> AllowedOrganisationIds { get; } =
+            new List<string>()
+            {
+                "00D80000000cDmQEAU"
+            };
+
+        public PersonController(ILogger<SalesforceNotificationController<SalesforcePerson>> logger)
+            : base(logger)
+        {
         }
 
-        // Version 2.0
-        [HttpGet, MapToApiVersion("2.0")]
-        public ActionResult<Boolean> Get_V2_0()
+        public override ActionResult<Boolean> Processor(
+            List<SalesforceNotification<SalesforcePerson>> notifications)
         {
-            return true;
+            return base.Processor(notifications);
         }
     }
 }

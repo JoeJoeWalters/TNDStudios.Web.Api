@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
 using TNDStudios.Web.ApiManager;
+using TNDStudios.Web.ApiManager.Data.Soap;
 using TNDStudios.Web.ApiManager.Security.Authentication;
 
 namespace TNDStudios.Web.Api
@@ -30,13 +31,17 @@ namespace TNDStudios.Web.Api
 
             // Add various system services (rather than the custom ones)
             services
+                .AddLogging()
                 .AddCors()
-                .AddMvc()
+                .AddMvc(options => 
+                    {
+                        // Add Custom Soap Envelope validation
+                        options.InputFormatters.Add(new SoapFormatter()); 
+                    })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Custom service setup for the API Manager
             services
-                .AddLogging()
                 .AddCustomAuthentication(userAuthenticator)
                 .AddCustomVersioning();
         }
