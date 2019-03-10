@@ -31,12 +31,13 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
         /// Set up logging and the document cache handler
         /// </summary>
         /// <param name="logger"></param>
-        public PersonController(ILogger<SalesforceNotificationController<SalesforcePerson>> logger)
+        public PersonController(ILogger logger)
             : base(logger)
         {
             // Already got a document handler?
             if (documentHandler == null)
                 documentHandler = new CosmosDocumentHandler<SalesforceNotification<SalesforcePerson>>(
+                    logger,
                     Startup.CosmosDB,
                     "Salesforce_ReceiverCache",
                     "SalesforcePerson");
