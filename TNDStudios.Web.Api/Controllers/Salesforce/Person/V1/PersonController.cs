@@ -12,25 +12,40 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
     [ApiController]
     public class PersonController : SalesforceNotificationController<SalesforcePerson>
     {
+        /// <summary>
+        /// Cosmos DB based document caching handler
+        /// </summary>
         private DocumentHandler<SalesforceNotification<SalesforcePerson>> documentHandler;
 
+        /// <summary>
+        /// The organisations allowed to access this controller
+        /// </summary>
         public override List<string> AllowedOrganisationIds { get; } =
             new List<string>()
             {
                 "00D80000000cDmQEAU"
             };
 
+        /// <summary>
+        /// Set up logging and the document cache handler
+        /// </summary>
+        /// <param name="logger"></param>
         public PersonController(ILogger<SalesforceNotificationController<SalesforcePerson>> logger)
             : base(logger)
         {
             // Already got a document handler?
             if (documentHandler == null)
                 documentHandler = new DocumentHandler<SalesforceNotification<SalesforcePerson>>(
-                    "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+                    Startup.CosmosDB,
                     "Salesforce_RecieverCache",
                     "SalesforcePerson");
         }
 
+        /// <summary>
+        /// Override the notification processor to connect it to the notification caching
+        /// </summary>
+        /// <param name="notifications">The list of notifications from the well formed request</param>
+        /// <returns>Ack to Salesforce</returns>
         public override ActionResult<Boolean> Processor(
             List<SalesforceNotification<SalesforcePerson>> notifications)
         {

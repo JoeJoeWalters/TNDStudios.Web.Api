@@ -14,9 +14,17 @@ namespace TNDStudios.Web.Api
 {
     public class Startup
     {
+        /// <summary>
+        /// Connection Strings from appsettings.json
+        /// </summary>
+        public static String CosmosDB = String.Empty;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            // Set the global connection strings
+            CosmosDB = Configuration.GetConnectionString("CosmosDB") ?? String.Empty;
         }
 
         public IConfiguration Configuration { get; }
