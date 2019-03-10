@@ -11,9 +11,9 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.2.2" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.0" />
+    <PackageReference Include="TNDStudios.Data.DocumentCache" Version="1.0.0" />
     <PackageReference Include="TNDStudios.Domain.Objects" Version="1.0.2" />
     <PackageReference Include="TNDStudios.Web.ApiManager" Version="1.0.7" />
   </ItemGroup>

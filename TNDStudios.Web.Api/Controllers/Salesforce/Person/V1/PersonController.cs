@@ -2,7 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using TNDStudios.Data.Cosmos.DocumentCache;
+using TNDStudios.Data.DocumentCache;
+using TNDStudios.Data.DocumentCache.Cosmos;
 using TNDStudios.Web.ApiManager.Controllers;
 using TNDStudios.Web.ApiManager.Data.Salesforce;
 
@@ -13,9 +14,9 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
     public class PersonController : SalesforceNotificationController<SalesforcePerson>
     {
         /// <summary>
-        /// Cosmos DB based document caching handler
+        /// Document caching handler
         /// </summary>
-        private DocumentHandler<SalesforceNotification<SalesforcePerson>> documentHandler;
+        private IDocumentHandler<SalesforceNotification<SalesforcePerson>> documentHandler;
 
         /// <summary>
         /// The organisations allowed to access this controller
@@ -35,7 +36,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
         {
             // Already got a document handler?
             if (documentHandler == null)
-                documentHandler = new DocumentHandler<SalesforceNotification<SalesforcePerson>>(
+                documentHandler = new CosmosDocumentHandler<SalesforceNotification<SalesforcePerson>>(
                     Startup.CosmosDB,
                     "Salesforce_RecieverCache",
                     "SalesforcePerson");
