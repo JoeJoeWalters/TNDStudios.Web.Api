@@ -59,7 +59,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
             {
                 // Pump the notificatin to the document cache making sure we define the id
                 // that we want to use as the key
-                Boolean itemResult = documentHandler.SendToCache(notification.Id, notification);
+                Boolean itemResult = documentHandler.Save(notification.Id, notification);
 
                 // One failed, so all fail
                 result = (!itemResult) ? itemResult : result; 
