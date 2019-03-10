@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TNDStudios.Web.ApiManager;
 using TNDStudios.Web.ApiManager.Data.Soap;
 using TNDStudios.Web.ApiManager.Security.Authentication;
@@ -19,12 +21,24 @@ namespace TNDStudios.Web.Api
         /// </summary>
         public static String CosmosDB = String.Empty;
 
+        /// <summary>
+        /// Salesforce Org Ids allowed to use the services
+        /// </summary>
+        public static List<string> AllowedOrgIds = new List<string>();
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
             // Set the global connection strings
             CosmosDB = Configuration.GetConnectionString("CosmosDB") ?? String.Empty;
+
+            // Get the allowed salesforce org id's
+            AllowedOrgIds = Configuration.GetSection("AllowedOrgIds")
+                                .AsEnumerable()
+                                .Where(orgId => orgId.Value != null)
+                                .Select(orgId => orgId.Value)
+                                .ToList<String>();
         }
 
         public IConfiguration Configuration { get; }
@@ -41,10 +55,10 @@ namespace TNDStudios.Web.Api
             services
                 .AddLogging()
                 .AddCors()
-                .AddMvc(options => 
+                .AddMvc(options =>
                     {
                         // Add Custom Soap Envelope validation
-                        options.InputFormatters.Add(new SoapFormatter()); 
+                        options.InputFormatters.Add(new SoapFormatter());
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

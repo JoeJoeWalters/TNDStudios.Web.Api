@@ -21,11 +21,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
         /// <summary>
         /// The organisations allowed to access this controller
         /// </summary>
-        public override List<string> AllowedOrganisationIds { get; } =
-            new List<string>()
-            {
-                "00D80000000cDmQEAU"
-            };
+        public override List<string> AllowedOrganisationIds { get; } = Startup.AllowedOrgIds;
 
         /// <summary>
         /// Set up logging and the document cache handler
