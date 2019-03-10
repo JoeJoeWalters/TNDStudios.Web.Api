@@ -17,7 +17,7 @@ namespace TNDStudios.Web.Api.Controllers.Person.V1
     [ApiController]
     public class PersonController : ManagedController
     {
-        public PersonController(ILogger logger) : base(logger)
+        public PersonController(ILogger<PersonController> logger) : base(logger)
         {
 
         }

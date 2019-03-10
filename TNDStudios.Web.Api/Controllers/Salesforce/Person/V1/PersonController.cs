@@ -31,7 +31,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
         /// Set up logging and the document cache handler
         /// </summary>
         /// <param name="logger"></param>
-        public PersonController(ILogger logger)
+        public PersonController(ILogger<PersonController> logger)
             : base(logger)
         {
             // Already got a document handler?
