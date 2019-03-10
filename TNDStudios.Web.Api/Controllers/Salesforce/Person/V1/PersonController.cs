@@ -38,7 +38,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
             if (documentHandler == null)
                 documentHandler = new CosmosDocumentHandler<SalesforceNotification<SalesforcePerson>>(
                     Startup.CosmosDB,
-                    "Salesforce_RecieverCache",
+                    "Salesforce_ReceiverCache",
                     "SalesforcePerson");
         }
 
