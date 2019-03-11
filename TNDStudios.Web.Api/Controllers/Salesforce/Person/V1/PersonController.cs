@@ -59,14 +59,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
 
                 // One failed, so all fail
                 result = (!itemResult) ? itemResult : result;
-
-                // Testing (mark as processed straight away)
-                //List<String> ids = documentHandler.MarkAsProcessed(new List<string>() { notification.Id });
             }
-
-            // Testing
-            //List<SalesforceNotification<SalesforcePerson>> toProcess = documentHandler.GetToProcess(100);
-            //Boolean purged = documentHandler.Purge();
 
             // Send the result wrapped in a Http Result
             return new ObjectResult(result);
