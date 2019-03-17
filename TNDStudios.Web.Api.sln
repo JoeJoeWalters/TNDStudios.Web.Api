@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNDStudios.Web.Api", "TNDStudios.Web.Api\TNDStudios.Web.Api.csproj", "{392593F3-988D-4D16-BCEC-B8A01CBAAEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{392593F3-988D-4D16-BCEC-B8A01CBAAEA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLogger", "WebLogger\WebLogger.csproj", "{C117A691-6303-4629-8273-2A73C04DFC4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{392593F3-988D-4D16-BCEC-B8A01CBAAEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{392593F3-988D-4D16-BCEC-B8A01CBAAEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{392593F3-988D-4D16-BCEC-B8A01CBAAEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C117A691-6303-4629-8273-2A73C04DFC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C117A691-6303-4629-8273-2A73C04DFC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C117A691-6303-4629-8273-2A73C04DFC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C117A691-6303-4629-8273-2A73C04DFC4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
