@@ -6,13 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebLogger.Controllers
 {
-    [Route("api/logger")]
-    public class LogController
+    /// <summary>
+    /// We need a complex type for modelbinding because 
+    /// of content-type: "application/x-www-form-urlencoded" 
+    /// in <see cref="WebServiceTarget"/>
+    /// </summary>
+    public class ComplexType
     {
-        [Http]
-        public void Get()
+        public string Param1 { get; set; }
+        public string Param2 { get; set; }
+    }
+
+    [Route("api/logger")]
+    [ApiController]
+    public class LogController : Controller
+    {
+        public LogController()
         {
 
+        }
+
+        /// <summary>
+        /// Post
+        /// </summary>
+        [HttpPost]
+        public void Post([FromForm] ComplexType complexType)
+        {
+            //do something
         }
     }
 }
