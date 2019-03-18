@@ -54,7 +54,15 @@ namespace TNDStudios.Web.Api
             // Add various system services (rather than the custom ones)
             services
                 .AddLogging()
-                .AddCors()
+                .AddCors(options =>
+                    {
+                        options.AddPolicy("CORSPolicy",
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:60972",
+                                                "https://localhost:44341");
+                        });
+                    })
                 .AddMvc(options =>
                     {
                         // Add Custom Soap Envelope validation
