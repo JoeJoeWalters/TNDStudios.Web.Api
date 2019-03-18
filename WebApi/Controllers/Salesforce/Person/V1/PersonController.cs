@@ -37,6 +37,8 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
                     Startup.CosmosDB,
                     "Salesforce_ReceiverCache",
                     "SalesforcePerson");
+
+            logger.LogInformation("{{Metric}}:SalesforcePerson:Receive", new object[] { 1 });
         }
 
         /// <summary>
