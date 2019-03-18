@@ -52,6 +52,7 @@ namespace TNDStudios.Web.Api
             userAuthenticator.RefreshAccessList(accessControl);
 
             // Add various system services (rather than the custom ones)
+            // Set up CORS to allow cross domain writing to the logging service
             services
                 .AddLogging()
                 .AddCors(options =>
