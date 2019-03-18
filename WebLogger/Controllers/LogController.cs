@@ -14,8 +14,8 @@ namespace WebLogger.Controllers
     /// </summary>
     public class ComplexType
     {
-        public string Param1 { get; set; }
-        public string Param2 { get; set; }
+        public string Message { get; set; }
+        public string Level { get; set; }
     }
 
     [Route("api/logger")]
@@ -33,8 +33,9 @@ namespace WebLogger.Controllers
         [HttpPost]
         public void Post([FromForm] ComplexType complexType)
         {
-            //do something
-            Debug.WriteLine($"{complexType.Param2} - {complexType.Param1}");
+            // Analyse Metrics
+            if (complexType.Message.StartsWith("metric:"))
+                Debug.WriteLine($"{complexType.Level} - {complexType.Message}");
         }
     }
 }

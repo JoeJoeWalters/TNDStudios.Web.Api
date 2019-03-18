@@ -6,6 +6,7 @@ using TNDStudios.Data.DocumentCache;
 using TNDStudios.Data.DocumentCache.Cosmos;
 using TNDStudios.Web.ApiManager.Controllers;
 using TNDStudios.Web.ApiManager.Data.Salesforce;
+using WebApi.Extensions;
 
 namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
 {
@@ -38,7 +39,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
                     "Salesforce_ReceiverCache",
                     "SalesforcePerson");
 
-            logger.LogInformation("{{Metric}}:SalesforcePerson:Receive", new object[] { 1 });
+            logger.LogMetric("SalesforcePerson", new { metric = 1 });
         }
 
         /// <summary>
