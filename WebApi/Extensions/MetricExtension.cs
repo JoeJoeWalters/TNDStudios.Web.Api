@@ -11,7 +11,8 @@ namespace WebApi.Extensions
     {
         Unknown = 0,
         Received = 1,
-        Sent = 2
+        Sent = 2,
+        Failed = 3
     }
 
     public static class MetricExtension

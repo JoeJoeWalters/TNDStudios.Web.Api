@@ -38,8 +38,6 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
                     Startup.CosmosDB,
                     "Salesforce_ReceiverCache",
                     "SalesforcePerson");
-
-            logger.LogMetric("SalesforcePerson", MetricType.Received, (Double)1);
         }
 
         /// <summary>
@@ -59,6 +57,11 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
                 // Pump the notificatin to the document cache making sure we define the id
                 // that we want to use as the key
                 Boolean itemResult = documentHandler.Save(notification.Id, notification);
+
+                if (itemResult)
+                    Logger.LogMetric("SalesforcePerson", MetricType.Received, (Double)1);
+                else
+                    Logger.LogMetric("SalesforcePerson", MetricType.Failed, (Double)1);
 
                 // One failed, so all fail
                 result = (!itemResult) ? itemResult : result;
