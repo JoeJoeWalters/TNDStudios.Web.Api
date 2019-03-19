@@ -39,7 +39,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
                     "Salesforce_ReceiverCache",
                     "SalesforcePerson");
 
-            logger.LogMetric("SalesforcePerson", new { metric = 1 });
+            logger.LogMetric("SalesforcePerson", MetricType.Received, (Double)1);
         }
 
         /// <summary>

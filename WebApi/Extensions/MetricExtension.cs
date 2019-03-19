@@ -7,16 +7,24 @@ using System.Threading.Tasks;
 
 namespace WebApi.Extensions
 {
+    public enum MetricType
+    {
+        Unknown = 0,
+        Received = 1,
+        Sent = 2
+    }
+
     public static class MetricExtension
     {
-        public static void LogMetric(this ILogger logger, String ObjectName, Object metrics)
+        
+        public static void LogMetric(this ILogger logger, String ObjectName, MetricType metricType, Double volume)
         {
             if (logger == null)
             {
                 throw new ArgumentNullException(nameof(logger));
             }
 
-            logger.LogInformation($"metric:{ObjectName}:{{value}}", metrics);
+            logger.LogInformation($"metric|{ObjectName}:{((Int64)metricType).ToString()}:{volume.ToString()}");
         }
     }
 }

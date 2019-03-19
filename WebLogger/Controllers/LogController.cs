@@ -29,7 +29,7 @@ namespace WebLogger.Controllers
         public void Post([FromForm] LogPayload payload)
         {
             // Analyse the payload to confirm it really is not a metric type
-            if (!payload.Message.StartsWith("metric:"))
+            if (!payload.Message.StartsWith("metric|"))
             {
                 Debug.WriteLine($"{payload.Level} - {payload.Message}");
             }
