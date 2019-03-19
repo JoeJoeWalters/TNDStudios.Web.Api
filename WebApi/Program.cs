@@ -20,6 +20,11 @@ namespace TNDStudios.Web.Api
             // https://github.com/NLog/NLog.Web
             // https://andrewlock.net/creating-a-rolling-file-logging-provider-for-asp-net-core-2-0/
 
+            // Stop the bloody awful caching of the nlog.config which was driving me potty
+            LogManager.Configuration = LogManager.Configuration.Reload();
+            LogManager.ReconfigExistingLoggers();
+
+            // Reconfigure the logging to nlog
             Logger logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
