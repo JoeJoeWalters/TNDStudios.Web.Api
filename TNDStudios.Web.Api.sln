@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 		{C117A691-6303-4629-8273-2A73C04DFC4E} = {C117A691-6303-4629-8273-2A73C04DFC4E}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLogger", "WebLogger\WebLogger.csproj", "{C117A691-6303-4629-8273-2A73C04DFC4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLogger", "WebLogger\WebLogger.csproj", "{C117A691-6303-4629-8273-2A73C04DFC4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

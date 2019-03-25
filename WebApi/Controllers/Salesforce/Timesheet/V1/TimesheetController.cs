@@ -8,16 +8,16 @@ using TNDStudios.Web.ApiManager.Controllers;
 using TNDStudios.Web.ApiManager.Data.Salesforce;
 using WebApi.Extensions;
 
-namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
+namespace TNDStudios.Web.Api.Controllers.Salesforce.Timesheet.V1
 {
-    [Route("api/salesforce/person/v1")]
+    [Route("api/salesforce/timesheet/v1")]
     [ApiController]
-    public class PersonController : SalesforceNotificationController<SalesforcePerson>
+    public class TimesheetController : SalesforceNotificationController<SalesforceTimesheet>
     {
         /// <summary>
         /// Document caching handler
         /// </summary>
-        private IDocumentHandler<SalesforceNotification<SalesforcePerson>> documentHandler;
+        private IDocumentHandler<SalesforceNotification<SalesforceTimesheet>> documentHandler;
 
         /// <summary>
         /// The organisations allowed to access this controller
@@ -28,16 +28,16 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
         /// Set up logging and the document cache handler
         /// </summary>
         /// <param name="logger"></param>
-        public PersonController(ILogger<PersonController> logger)
+        public TimesheetController(ILogger<TimesheetController> logger)
             : base(logger)
         {
             // Already got a document handler?
             if (documentHandler == null)
-                documentHandler = new CosmosDocumentHandler<SalesforceNotification<SalesforcePerson>>(
+                documentHandler = new CosmosDocumentHandler<SalesforceNotification<SalesforceTimesheet>>(
                     logger,
                     Startup.CosmosDB,
                     "Salesforce_ReceiverCache",
-                    "SalesforcePerson");
+                    "SalesforceTimesheet");
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
         /// <param name="notifications">The list of notifications from the well formed request</param>
         /// <returns>Ack to Salesforce</returns>
         public override ActionResult<Boolean> Processor(
-            List<SalesforceNotification<SalesforcePerson>> notifications)
+            List<SalesforceNotification<SalesforceTimesheet>> notifications)
         {
             Boolean result = true;
 
@@ -59,9 +59,9 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Person.V1
                 Boolean itemResult = documentHandler.Save(notification.Id, notification);
 
                 if (itemResult)
-                    Logger.LogMetric("SalesforcePerson", MetricType.Received, (Double)1);
+                    Logger.LogMetric("SalesforceTimesheet", MetricType.Received, (Double)1);
                 else
-                    Logger.LogMetric("SalesforcePerson", MetricType.Failed, (Double)1);
+                    Logger.LogMetric("SalesforceTimesheet", MetricType.Failed, (Double)1);
 
                 // One failed, so all fail
                 result = (!itemResult) ? itemResult : result;

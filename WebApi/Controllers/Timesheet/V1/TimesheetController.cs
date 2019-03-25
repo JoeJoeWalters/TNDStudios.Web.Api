@@ -13,11 +13,11 @@ namespace TNDStudios.Web.Api.Controllers.Person.V1
     [Authorize]
     [ApiVersion("1.0", Deprecated = true)]
     [ApiVersion("1.1")]
-    [Route("api/person")]
+    [Route("api/timesheet")]
     [ApiController]
-    public class PersonController : ManagedController
+    public class TimesheetController : ManagedController
     {
-        public PersonController(ILogger<PersonController> logger) : base(logger)
+        public TimesheetController(ILogger<TimesheetController> logger) : base(logger)
         {
 
         }
@@ -25,30 +25,24 @@ namespace TNDStudios.Web.Api.Controllers.Person.V1
         // Version 1.0
         [HttpGet, MapToApiVersion("1.0")]
         [Validate(Type: "admin", Category: "cat", Permission: "read")]
-        public ActionResult<IEnumerable<objects.Person>> Get_V1_0() =>
-            GetPeople();
+        public ActionResult<IEnumerable<objects.Timesheet>> Get_V1_0() =>
+            GetTimesheets();
 
         // Version 1.1
         [HttpGet, MapToApiVersion("1.1")]
         [Validate(Type: "admin", Category: "cat", Permission: "read")]
-        public ActionResult<IEnumerable<objects.Person>> Get_V1_1() =>
-            GetPeople().ToList().Select(person => { person.Forename = "V1.1"; return person; }).ToArray();
+        public ActionResult<IEnumerable<objects.Timesheet>> Get_V1_1() =>
+            GetTimesheets().ToList().Select(timesheet => { timesheet.InternalId = "V1.1"; return timesheet; }).ToArray();
 
         // Universal method for all versions to get "people"
-        private objects.Person[] GetPeople() =>
-            new objects.Person[]
+        private objects.Timesheet[] GetTimesheets() =>
+            new objects.Timesheet[]
                 {
-                    new objects.Person()
+                    new objects.Timesheet()
                     {
-                        Forename = "V1.0",
-                        Surname = "Name",
                         InternalId = "InternalId",
                         ExternalId = "ExternalId",
-                        Middlenames = "Middlenames",
-                        NINumber = "NINumber",
-                        PKId  = Guid.NewGuid(),
-                        DOB = new DateTime(2001, 5, 21),
-                        Title = "Mr"
+                        PKId  = Guid.NewGuid()
                     }
                 };
     }

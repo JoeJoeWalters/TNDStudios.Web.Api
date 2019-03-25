@@ -11,11 +11,11 @@ namespace TNDStudios.Web.Api.Controllers.Person.V2
 {
     [Authorize]
     [ApiVersion("2.0")]
-    [Route("api/person")]
+    [Route("api/timesheet")]
     [ApiController]
-    public class PersonController : ManagedController
+    public class TimesheetController : ManagedController
     {
-        public PersonController(ILogger<PersonController> logger) : base(logger)
+        public TimesheetController(ILogger<TimesheetController> logger) : base(logger)
         {
 
         }
@@ -23,20 +23,14 @@ namespace TNDStudios.Web.Api.Controllers.Person.V2
         // Version 2.0
         [HttpGet, MapToApiVersion("2.0")]
         [Validate(Type: "admin", Category: "cat", Permission: "read")]
-        public ActionResult<IEnumerable<objects.Person>> Get_V2_0() =>
-            new objects.Person[]
+        public ActionResult<IEnumerable<objects.Timesheet>> Get_V2_0() =>
+            new objects.Timesheet[]
             {
-                new objects.Person()
+                new objects.Timesheet()
                 {
-                    Forename = "V2.0",
-                    Surname = "Name",
-                    InternalId = "InternalId",
+                    InternalId = "v2.0",
                     ExternalId = "ExternalId",
-                    Middlenames = "Middlenames",
-                    NINumber = "NINumber",
-                    PKId  = Guid.NewGuid(),
-                    DOB = new DateTime(2001, 5, 21),
-                    Title = "Mr"
+                    PKId  = Guid.NewGuid()
                 }
             };
     }
