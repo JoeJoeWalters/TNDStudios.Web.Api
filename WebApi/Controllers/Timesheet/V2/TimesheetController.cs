@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using TNDStudios.Web.ApiManager.Controllers;
 using TNDStudios.Web.ApiManager.Security.Authentication;
+using WebApi.Extensions;
 using objects = TNDStudios.Domain.Objects;
 
 namespace TNDStudios.Web.Api.Controllers.Person.V2
@@ -33,5 +34,15 @@ namespace TNDStudios.Web.Api.Controllers.Person.V2
                     PKId  = Guid.NewGuid()
                 }
             };
+
+        [HttpPost, MapToApiVersion("2.0")]
+        [Validate(Type: "admin", Category: "cat", Permission: "write")]
+        public ActionResult<Boolean> Post_V2_0()
+        {
+            Logger.LogMetric("Timesheet", MetricType.Received, (Double)1);
+
+            return true;
+        }
+
     }
 }

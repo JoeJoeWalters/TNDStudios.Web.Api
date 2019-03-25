@@ -37,7 +37,7 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Timesheet.V1
                     logger,
                     Startup.CosmosDB,
                     "Salesforce_ReceiverCache",
-                    "SalesforceTimesheet");
+                    "SalesforceTimesheetLine");
         }
 
         /// <summary>
@@ -59,12 +59,20 @@ namespace TNDStudios.Web.Api.Controllers.Salesforce.Timesheet.V1
                 Boolean itemResult = documentHandler.Save(notification.Id, notification);
 
                 if (itemResult)
-                    Logger.LogMetric("SalesforceTimesheet", MetricType.Received, (Double)1);
+                {
+                    Logger.LogMetric("SalesforceTimesheetLine", MetricType.Received, (Double)1);
+                }
                 else
-                    Logger.LogMetric("SalesforceTimesheet", MetricType.Failed, (Double)1);
+                    Logger.LogMetric("SalesforceTimesheetLine", MetricType.Failed, (Double)1);
 
                 // One failed, so all fail
                 result = (!itemResult) ? itemResult : result;
+            }
+
+            // Is everything now available to process? i.e. all parts have been received?
+            if (result)
+            {
+                // TODO:
             }
 
             // Send the result wrapped in a Http Result
