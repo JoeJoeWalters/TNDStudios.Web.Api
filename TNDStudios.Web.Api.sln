@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{392593F3-988D-4D16-BCEC-B8A01CBAAEA3}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLogger", "WebLogger\WebLogger.csproj", "{C117A691-6303-4629-8273-2A73C04DFC4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctions", "AzureFunctions\AzureFunctions.csproj", "{5B1EA8B6-0A62-42A1-8A51-69D005AF46BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{C117A691-6303-4629-8273-2A73C04DFC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C117A691-6303-4629-8273-2A73C04DFC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C117A691-6303-4629-8273-2A73C04DFC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1EA8B6-0A62-42A1-8A51-69D005AF46BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1EA8B6-0A62-42A1-8A51-69D005AF46BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1EA8B6-0A62-42A1-8A51-69D005AF46BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1EA8B6-0A62-42A1-8A51-69D005AF46BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
